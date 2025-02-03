@@ -1,0 +1,64 @@
+package com.example.myapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapp.ui.theme.MyAppTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MyAppTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    MyApp(
+//                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyApp(modifier: Modifier = Modifier) {
+    val appModifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+    Column (
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ){
+        Text(
+            text = "My title",
+            modifier = appModifier,
+            style = MaterialTheme.typography.titleLarge
+        )
+        OutlinedTextField(
+            value="",
+            onValueChange = { /*TODO*/},
+            modifier = appModifier
+        )
+        Button(
+            onClick = {/*TODO*/},
+            modifier = appModifier
+        ) {
+            Text("Submit")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MyAppPreview() {
+    MyAppTheme {
+        MyApp()
+    }
+}
